@@ -54,51 +54,49 @@ resource "aws_glue_catalog_table" "reclamos" {
     input_format  = "org.apache.hadoop.mapred.TextInputFormat"
     output_format = "org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat"
 
-    serde_info {
+    ser_de_info {
       name                  = "OpenCSVSerde"
       serialization_library = "org.apache.hadoop.hive.serde2.OpenCSVSerde"
       parameters = {
-        "separatorChar" = ","
-        "quoteChar"     = "\""
-        "escapeChar"    = "\\"
+        separatorChar = ","
+        quoteChar     = "\""
+        escapeChar    = "\\"
       }
     }
 
-    columns = [
-      { name = "id_reclamo", type = "bigint" },
-      { name = "id_cliente", type = "int" },
-      { name = "id_tarjeta", type = "int" },
-      { name = "tipo_codigo", type = "string" },
-      { name = "tipo_nombre", type = "string" },
-      { name = "criticidad", type = "string" },
-      { name = "estado_codigo", type = "string" },
-      { name = "estado_nombre", type = "string" },
-      { name = "canal_codigo", type = "string" },
-      { name = "canal_nombre", type = "string" },
-      { name = "descripcion", type = "string" },
-      { name = "monto", type = "double" },
-      { name = "moneda_codigo", type = "string" },
-      { name = "fecha_apertura", type = "string" },
-      { name = "fecha_cierre", type = "string" },
-      { name = "sla_dias", type = "int" },
-      { name = "dias_transcurridos", type = "int" },
-      { name = "en_sla", type = "boolean" },
-      { name = "referencia_externa", type = "string" },
-      { name = "movimientos_count", type = "int" },
-      { name = "ultimo_id_movimiento", type = "bigint" },
-      { name = "decision_resultado", type = "string" },
-      { name = "decision_monto_reintegrar", type = "double" },
-      { name = "decision_fecha_decision", type = "string" }
-    ]
+    # --- columnas (una por bloque) ---
+    columns { name = "id_reclamo",               type = "bigint" }
+    columns { name = "id_cliente",               type = "int" }
+    columns { name = "id_tarjeta",               type = "int" }
+    columns { name = "tipo_codigo",              type = "string" }
+    columns { name = "tipo_nombre",              type = "string" }
+    columns { name = "criticidad",               type = "string" }
+    columns { name = "estado_codigo",            type = "string" }
+    columns { name = "estado_nombre",            type = "string" }
+    columns { name = "canal_codigo",             type = "string" }
+    columns { name = "canal_nombre",             type = "string" }
+    columns { name = "descripcion",              type = "string" }
+    columns { name = "monto",                    type = "double" }
+    columns { name = "moneda_codigo",            type = "string" }
+    columns { name = "fecha_apertura",           type = "string" }
+    columns { name = "fecha_cierre",             type = "string" }
+    columns { name = "sla_dias",                 type = "int" }
+    columns { name = "dias_transcurridos",       type = "int" }
+    columns { name = "en_sla",                   type = "boolean" }
+    columns { name = "referencia_externa",       type = "string" }
+    columns { name = "movimientos_count",        type = "int" }
+    columns { name = "ultimo_id_movimiento",     type = "bigint" }
+    columns { name = "decision_resultado",       type = "string" }
+    columns { name = "decision_monto_reintegrar",type = "double" }
+    columns { name = "decision_fecha_decision",  type = "string" }
   }
 
   parameters = {
-    "classification"         = "csv"
-    "skip.header.line.count" = "1"
-    "EXTERNAL"               = "TRUE"
+    classification             = "csv"
+    "skip.header.line.count"   = "1"
+    EXTERNAL                   = "TRUE"
   }
 }
-
 # ---- Upload CSV ----
 resource "aws_s3_object" "csv_reclamos" {
   bucket = aws_s3_bucket.datalake.id
