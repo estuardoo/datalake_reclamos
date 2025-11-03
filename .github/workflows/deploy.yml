@@ -1,6 +1,13 @@
 name: Deploy Data Lake AWS
+
 on:
   workflow_dispatch:
+    inputs:
+      action:
+        description: "apply o destroy"
+        required: true
+        default: "apply"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -10,16 +17,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: 1.13.4
-      - name: Configure AWS (OIDC)    # usa rol, sin guardar claves
+        with: { terraform_version: 1.13.4 }
+
+      - name: Configure AWS via OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
           aws-region: ${{ secrets.AWS_REGION }}
+
       - name: Terraform Init
         working-directory: ./terraform
         run: terraform init -reconfigure
+
       - name: Terraform Apply
+        if: ${{ github.event.inputs.action == 'apply' }}
         working-directory: ./terraform
         run: terraform apply -auto-approve
+
+      - name: Terraform Destroy
+        if: ${{ github.event.inputs.action == 'destroy' }}
+        working-directory: ./terraform
+        run: terraform destroy -auto-approve
