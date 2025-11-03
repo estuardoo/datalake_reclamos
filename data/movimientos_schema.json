@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "analytics.movimientos_aprobados_ml",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "monto": {
+      "type": "number",
+      "multipleOf": 0.01,
+      "description": "Amount (DECIMAL(12,2))"
+    },
+    "fecha_operacion": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Operation timestamp"
+    },
+    "id_canal": {
+      "type": "integer",
+      "description": "Channel ID (SMALLINT)"
+    },
+    "canal_codigo": {
+      "type": "string",
+      "maxLength": 16,
+      "description": "Channel code (e.g., POS/ECOM/APP/WEB/ATM)"
+    },
+    "canal_nombre": {
+      "type": "string",
+      "maxLength": 64,
+      "description": "Channel name"
+    },
+    "id_comercio": {
+      "type": ["integer", "null"],
+      "description": "Merchant ID (nullable)"
+    },
+    "comercio_ruc": {
+      "type": ["string", "null"],
+      "maxLength": 16,
+      "description": "Merchant tax ID (nullable)"
+    },
+    "comercio_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 160,
+      "description": "Merchant name (nullable)"
+    },
+    "comercio_pais_iso2": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z]{2}$",
+      "description": "Merchant country ISO2 (nullable)"
+    },
+    "comercio_ciudad": {
+      "type": ["string", "null"],
+      "maxLength": 80,
+      "description": "Merchant city (nullable)"
+    },
+    "mcc_codigo": {
+      "type": ["string", "null"],
+      "pattern": "^\\d{4}$",
+      "description": "MCC code (nullable)"
+    },
+    "mcc_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 120,
+      "description": "MCC name (nullable)"
+    },
+    "id_tarjeta": {
+      "type": "integer",
+      "description": "Card ID"
+    },
+    "id_moneda": {
+      "type": "integer",
+      "description": "Currency ID (SMALLINT)"
+    },
+    "moneda_codigo": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "Transaction currency code (e.g., PEN/USD)"
+    },
+    "moneda_nombre": {
+      "type": "string",
+      "maxLength": 32,
+      "description": "Transaction currency name"
+    },
+    "tarjeta_producto_codigo": {
+      "type": ["string", "null"],
+      "maxLength": 32,
+      "description": "Card product code (nullable)"
+    },
+    "tarjeta_producto_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 80,
+      "description": "Card product name (nullable)"
+    },
+    "tarjeta_red_codigo": {
+      "type": ["string", "null"],
+      "maxLength": 16,
+      "description": "Card network code (nullable)"
+    },
+    "tarjeta_red_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 64,
+      "description": "Card network name (nullable)"
+    },
+    "tarjeta_estado_codigo": {
+      "type": ["string", "null"],
+      "maxLength": 16,
+      "description": "Card status code (nullable)"
+    },
+    "tarjeta_estado_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 64,
+      "description": "Card status name (nullable)"
+    },
+    "tarjeta_moneda_codigo": {
+      "type": ["string", "null"],
+      "pattern": "^[A-Z]{3}$",
+      "description": "Card currency code (nullable)"
+    },
+    "tarjeta_moneda_nombre": {
+      "type": ["string", "null"],
+      "maxLength": 32,
+      "description": "Card currency name (nullable)"
+    }
+  },
+  "required": [
+    "monto",
+    "fecha_operacion",
+    "id_canal",
+    "canal_codigo",
+    "canal_nombre",
+    "id_tarjeta",
+    "id_moneda",
+    "moneda_codigo",
+    "moneda_nombre"
+  ]
+}

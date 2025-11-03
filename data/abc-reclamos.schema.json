@@ -1,0 +1,101 @@
+[
+  {
+    "Name": "id_reclamo",
+    "Type": "bigint",
+    "Comment": "ID del reclamo"
+  },
+  {
+    "Name": "id_cliente",
+    "Type": "int",
+    "Comment": "ID del cliente"
+  },
+  {
+    "Name": "id_tarjeta",
+    "Type": "int",
+    "Comment": "ID de la tarjeta"
+  },
+  {
+    "Name": "tipo_codigo",
+    "Type": "string"
+  },
+  {
+    "Name": "tipo_nombre",
+    "Type": "string"
+  },
+  {
+    "Name": "criticidad",
+    "Type": "string"
+  },
+  {
+    "Name": "estado_codigo",
+    "Type": "string"
+  },
+  {
+    "Name": "estado_nombre",
+    "Type": "string"
+  },
+  {
+    "Name": "canal_codigo",
+    "Type": "string"
+  },
+  {
+    "Name": "canal_nombre",
+    "Type": "string"
+  },
+  {
+    "Name": "descripcion",
+    "Type": "string"
+  },
+  {
+    "Name": "monto",
+    "Type": "float"
+  },
+  {
+    "Name": "moneda_codigo",
+    "Type": "string"
+  },
+  {
+    "Name": "fecha_apertura",
+    "Type": "string"
+  },
+  {
+    "Name": "fecha_cierre",
+    "Type": "string"
+  },
+  {
+    "Name": "sla_dias",
+    "Type": "int"
+  },
+  {
+    "Name": "dias_transcurridos",
+    "Type": "int"
+  },
+  {
+    "Name": "en_sla",
+    "Type": "boolean"
+  },
+  {
+    "Name": "referencia_externa",
+    "Type": "string"
+  },
+  {
+    "Name": "movimientos_count",
+    "Type": "int"
+  },
+  {
+    "Name": "ultimo_id_movimiento",
+    "Type": "bigint"
+  },
+  {
+    "Name": "decision_resultado",
+    "Type": "string"
+  },
+  {
+    "Name": "decision_monto_reintegrar",
+    "Type": "float"
+  },
+  {
+    "Name": "decision_fecha_decision",
+    "Type": "string"
+  }
+]
